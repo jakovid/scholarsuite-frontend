@@ -28,3 +28,10 @@ class Test{
         this.score = score
     }
 }
+
+let sampleData = [
+    { 
+        subject: "Math", 
+        teacher: "George Castles"
+    }
+]
