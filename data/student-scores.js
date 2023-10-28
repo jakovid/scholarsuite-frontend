@@ -12,8 +12,6 @@ class Student{
         this.studentName = studentName
         this.courses = []
         this.tests = []
-        this.homework = []
-        this.attendance = []
     }
 }
 
@@ -55,6 +53,12 @@ let course1 = new Course(1, "Math", "Mr. David Jones");
 let course2 = new Course(2, "Science", "Ms. Stephanie Collins");
 let course3 = new Course(3, "History", "Mr. Mark Clarkson");
 let course4 = new Course(4, "English", "Mrs. Susan Anthony");
+
+course1.students.push(student1, student2, student3, student4, student5, student6, student7, student8, student9, student10)
+course2.students.push(student11, student12, student13, student14, student15, student16, student17, student18, student19, student20)
+course3.students.push(student2, student4, student6, student8, student10, student12, student14, student16, student18, student20);
+course4.students.push(student1, student3, student5, student7, student9, student11, student13, student15, student17, student19);
+
 
 courses.push(course1, course2, course3, course4);
 
