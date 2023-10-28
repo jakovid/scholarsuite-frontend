@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import courses from "@/data/student-scores";
-import CourseStudents from "@/components/courses/courseStudents";
+import CourseStudent from "@/components/courses/courseStudent";
 import Link from "next/link";
+
 
 export default function CoursePage(){
     const router = useRouter()
@@ -26,7 +27,11 @@ export default function CoursePage(){
         <div className="flex flex-col justify-center items-center">
             <div className="text-3xl">{course.subject}</div>
             <div> Instructor: {course.teacherName}</div>
-            <CourseStudents course={course} />
+            <div>
+                {course.students.map(student => (
+                    <CourseStudent student={student} />
+                ))}
+            </div>
             
             <Link href={"/courses"} className="border-2 border-white flex w-40 justify-center" passHref>
                 View All Courses

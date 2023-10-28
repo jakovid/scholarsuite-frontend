@@ -5,6 +5,14 @@ class Course{
         this.teacherName = teacherName
         this.students = []
     }
+
+    addStudent(student) {
+        // Add the student to the course
+        this.students.push(student);
+        
+        // Add the course to the student's courses
+        student.addCourse(this);
+    }
 }
 
 class Student{
@@ -13,16 +21,29 @@ class Student{
         this.courses = []
         this.tests = []
     }
+
+    addCourse(course) {
+        // Prevent duplicate course entries
+        if (!this.courses.some(c => c.id === course.id)) {
+            this.courses.push(course);
+        }
+    }
+
+    addTest(test) {
+        this.tests.push(test);
+    }
 }
 
 class Test{
-    constructor(subject, testType, teacherName, studentName, date, score){
+    constructor(subject, testType, student, date, score){
         this.subject = subject
         this.testType = testType
-        this.teacherName = teacherName
-        this.studentName = studentName
+        this.teacherName = subject.teacherName
+        this.student = student
         this.date = date
         this.score = score
+
+        this.student.addTest(this)
     }
 }
 
@@ -54,10 +75,10 @@ let course2 = new Course(2, "Science", "Ms. Stephanie Collins");
 let course3 = new Course(3, "History", "Mr. Mark Clarkson");
 let course4 = new Course(4, "English", "Mrs. Susan Anthony");
 
-course1.students.push(student1, student2, student3, student4, student5, student6, student7, student8, student9, student10)
-course2.students.push(student11, student12, student13, student14, student15, student16, student17, student18, student19, student20)
-course3.students.push(student2, student4, student6, student8, student10, student12, student14, student16, student18, student20);
-course4.students.push(student1, student3, student5, student7, student9, student11, student13, student15, student17, student19);
+course1.addStudent(student1)
+course1.addStudent(student2)
+
+let test1 = new Test(course1, "Test", student1, "2023-10-28", 76)
 
 
 courses.push(course1, course2, course3, course4);
