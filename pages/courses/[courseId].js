@@ -29,7 +29,7 @@ export default function CoursePage(){
             <div> Instructor: {course.teacherName}</div>
             <div>
                 {course.students.map(student => (
-                    <CourseStudent student={student} />
+                    <CourseStudent student={student} course={course.subject} />
                 ))}
             </div>
             

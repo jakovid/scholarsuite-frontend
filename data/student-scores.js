@@ -29,21 +29,31 @@ class Student{
         }
     }
 
-    addTest(test) {
+    addTest(course, testType, date, score) {
+        if (!(course instanceof Course)) {
+            throw new Error('Invalid course information');
+        }
+        const test = new Test(course, testType, this, date, score); // 'this' refers to the student instance
         this.tests.push(test);
     }
 }
 
 class Test{
-    constructor(subject, testType, student, date, score){
-        this.subject = subject
+    constructor(course, testType, student, date, score){
+        if (!(course instanceof Course)) {
+            throw new Error('Invalid course');
+        }
+        if (!(student instanceof Student)) {
+            throw new Error('Invalid student');
+        }
+
+        this.subject = course.subject
         this.testType = testType
-        this.teacherName = subject.teacherName
+        this.teacherName = course.teacherName
         this.student = student
         this.date = date
         this.score = score
 
-        this.student.addTest(this)
     }
 }
 
@@ -75,12 +85,58 @@ let course2 = new Course(2, "Science", "Ms. Stephanie Collins");
 let course3 = new Course(3, "History", "Mr. Mark Clarkson");
 let course4 = new Course(4, "English", "Mrs. Susan Anthony");
 
-course1.addStudent(student1)
-course1.addStudent(student2)
+let students = [student1, student2, student3, student4, student5, student6, student7, student8, student9, student10, student11, student12, student13, student14, student15, student16, student17, student18, student19, student20]
 
-let test1 = new Test(course1, "Test", student1, "2023-10-28", 76)
-let test2 = new Test(course1, "Test", student1, "2023-11-28", 81)
-let test3 = new Test(course1, "Test", student1, "2023-12-28", 87)
+
+const mathTestsInfo = [
+    {testType: "U1-3", date: "2023-9-28"},
+    {testType: "U4-6", date: "2023-10-14"},
+    {testType: "Midterm", date: "2023-10-28"},
+    {testType: "U7-9", date: "2023-11-14"},
+    {testType: "U10-12", date: "2023-11-28"},
+    {testType: "Final", date: "2023-12-28"}
+];
+
+// Function to generate a random score between 65 and 100
+function getRandomScore() {
+    return Math.floor(Math.random() * (100 - 65 + 1)) + 65; // The score is between 65 and 100
+}
+
+// Enroll students in Math and generate random tests
+for (let i = 0; i < 10; i++){
+    course1.addStudent(students[i]);
+    mathTestsInfo.forEach(testInfo => {
+        const score = getRandomScore(); // Get a random score for each test
+        students[i].addTest(course1, testInfo.testType, testInfo.date, score);
+    });
+}
+
+//Enroll students in Science and Generate Random Tests
+for (let i = 10; i < students.length; i++){
+    course2.addStudent(students[i]);
+    mathTestsInfo.forEach(testInfo => {
+        const score = getRandomScore(); // Get a random score for each test
+        students[i].addTest(course2, testInfo.testType, testInfo.date, score);
+    });
+}
+
+//Enroll students in History and Generate Random Tests
+for (let i = 0; i < students.length; i+= 2){
+    course3.addStudent(students[i]);
+    mathTestsInfo.forEach(testInfo => {
+        const score = getRandomScore(); // Get a random score for each test
+        students[i].addTest(course3, testInfo.testType, testInfo.date, score);
+    });
+}
+
+//Enroll students in English and Generate Random Tests
+for (let i = 1; i < students.length; i+= 2){
+    course4.addStudent(students[i]);
+    mathTestsInfo.forEach(testInfo => {
+        const score = getRandomScore(); // Get a random score for each test
+        students[i].addTest(course4, testInfo.testType, testInfo.date, score);
+    });
+}
 
 
 courses.push(course1, course2, course3, course4);

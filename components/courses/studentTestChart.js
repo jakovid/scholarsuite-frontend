@@ -14,13 +14,13 @@ ChartJS.register(
     PointElement
 )
 
-export default function StudentTestChart({ student }){
+export default function StudentTestChart({ student, course }){
 
     const data = {
-        labels: student.tests.map(test => test.date),
+        labels: student.tests.filter(test => test.subject == course ).map(test => test.testType),
         datasets: [{
             labels: student.studentName,
-            data: student.tests.map(test => test.score),
+            data: student.tests.filter(test => test.subject == course ).map(test => test.score),
             backgroundColor: "red",
             borderColor: "white",
             pointElement: "red"
