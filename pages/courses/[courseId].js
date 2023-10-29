@@ -24,10 +24,13 @@ export default function CoursePage(){
     }
 
     return(
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center gap-2">
             <div className="text-3xl">{course.subject}</div>
             <div> Instructor: {course.teacherName}</div>
-            <div>
+            <Link href={"/courses"} className="border-2 border-white flex w-40 justify-center" passHref>
+                View All Courses
+            </Link>
+            <div className="flex flex-wrap gap-4 p-10 justify-center">
                 {course.students.map(student => (
                     <CourseStudent student={student} course={course.subject} />
                 ))}
