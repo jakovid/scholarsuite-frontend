@@ -1,11 +1,10 @@
-import { Line } from "react-chartjs-2";
-
+import StudentTestChart from "./studentTestChart"
 
 export default function CourseStudent({student}){
     return(
         <div className="flex flex-col">
             <div>Name: {student.studentName} </div>
-            <div>{student.tests[0]?.score}</div>
+            <StudentTestChart student={student} />
         </div>
     )
 }

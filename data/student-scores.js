@@ -79,6 +79,8 @@ course1.addStudent(student1)
 course1.addStudent(student2)
 
 let test1 = new Test(course1, "Test", student1, "2023-10-28", 76)
+let test2 = new Test(course1, "Test", student1, "2023-11-28", 81)
+let test3 = new Test(course1, "Test", student1, "2023-12-28", 87)
 
 
 courses.push(course1, course2, course3, course4);
