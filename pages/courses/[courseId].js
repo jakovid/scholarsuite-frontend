@@ -32,7 +32,7 @@ export default function CoursePage(){
             </Link>
             <div className="flex flex-wrap gap-4 p-10 justify-center">
                 {course.students.map(student => (
-                    <CourseStudent student={student} course={course.subject} />
+                    <CourseStudent student={student} course={course} />
                 ))}
             </div>
             

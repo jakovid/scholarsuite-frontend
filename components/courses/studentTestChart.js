@@ -17,10 +17,10 @@ ChartJS.register(
 export default function StudentTestChart({ student, course }){
 
     const data = {
-        labels: student.tests.filter(test => test.subject == course ).map(test => test.testType),
+        labels: student.tests.filter(test => test.subject == course.subject ).map(test => test.testType),
         datasets: [{
             labels: student.studentName,
-            data: student.tests.filter(test => test.subject == course ).map(test => test.score),
+            data: student.tests.filter(test => test.subject == course.subject ).map(test => test.score),
             backgroundColor: "red",
             borderColor: "white",
             pointElement: "red"
