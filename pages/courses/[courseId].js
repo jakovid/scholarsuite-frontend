@@ -5,7 +5,7 @@ import CourseStudent from "@/components/courses/courseStudent";
 import Link from "next/link";
 
 
-export default function CoursePage(){
+export default function CoursePage() {
     const router = useRouter()
 
     const { courseId } = router.query;
@@ -19,11 +19,11 @@ export default function CoursePage(){
         }
     }, [courseId])
 
-    if(!course){
+    if (!course) {
         return <p>No Course Found. {courseId}</p>
     }
 
-    return(
+    return (
         <div className="flex flex-col justify-center items-center gap-2">
             <div className="text-3xl">{course.subject}</div>
             <div> Instructor: {course.teacherName}</div>
@@ -32,10 +32,11 @@ export default function CoursePage(){
             </Link>
             <div className="flex flex-wrap gap-4 p-10 justify-center">
                 {course.students.map(student => (
-                    <CourseStudent student={student} course={course} />
+                    <CourseStudent key={student.id} student={student} course={course} />
                 ))}
             </div>
-            
+
+
             <Link href={"/courses"} className="border-2 border-white flex w-40 justify-center" passHref>
                 View All Courses
             </Link>
